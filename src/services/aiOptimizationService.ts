@@ -410,12 +410,25 @@ class AIOptimizationService {
     const serviceRec = baseRecommendations[service] || baseRecommendations['default'];
 
     return {
-      ...serviceRec,
       id: `custom_${service}_${Date.now()}`,
+      type: serviceRec.type || 'cost_reduction',
+      title: serviceRec.title || `Optimize ${service} Costs`,
+      description: serviceRec.description || 'Review usage patterns and consider optimization opportunities for this service.',
+      impact: serviceRec.impact || 'medium',
+      category: serviceRec.category || 'other',
+      service: serviceRec.service || service,
       estimatedSavings: {
-        ...serviceRec.estimatedSavings,
         amount: Math.max(50, costAmount * 0.2), // Estimate 20% savings
+        currency: serviceRec.estimatedSavings?.currency || 'USD',
+        percentage: serviceRec.estimatedSavings?.percentage || 20,
       },
+      implementation: serviceRec.implementation || {
+        difficulty: 'medium',
+        timeToImplement: '1-2 weeks',
+        steps: ['Analyze current usage', 'Identify optimization opportunities', 'Implement changes'],
+      },
+      tags: serviceRec.tags || [service.toLowerCase().replace(/\s+/g, '-')],
+      priority: serviceRec.priority || 5,
       isGeneral: true,
     };
   }

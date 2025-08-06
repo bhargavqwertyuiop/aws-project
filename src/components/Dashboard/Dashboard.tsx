@@ -6,7 +6,7 @@ import {
   ExclamationTriangleIcon,
   LightBulbIcon,
   ChartBarIcon,
-  RefreshIcon,
+  ArrowPathIcon,
 } from '@heroicons/react/24/outline';
 import { useApp } from '../../context/AppContext';
 import LoadingSpinner from '../UI/LoadingSpinner';
@@ -100,7 +100,7 @@ const Dashboard: React.FC = () => {
               disabled={isRefreshing}
               className="btn-primary flex items-center"
             >
-              <RefreshIcon 
+                                <ArrowPathIcon 
                 className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} 
               />
               {isRefreshing ? 'Refreshing...' : 'Refresh Data'}
